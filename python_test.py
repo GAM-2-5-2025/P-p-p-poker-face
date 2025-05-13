@@ -11,7 +11,7 @@ class App:
         pygame.init()
         self._display_surf = pygame.display.set_mode((700,700), pygame.HWSURFACE)
         self._running = True
-        self._image_surf = pygame.image.load("obrijani_mario.jpg").convert()
+        self._image_surf = pygame.image.load("ba33e6f8-5790-4f75-bed1-96a76d8e06ce.jpg").convert()
  
     def on_event(self, event):
         if event.type == QUIT:
