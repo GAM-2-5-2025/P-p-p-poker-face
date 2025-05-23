@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
- 
+ "napomena: Rendint(a, b) je funkcija za random brojeve."
 class App:
     def __init__(self):
         self._running = True
