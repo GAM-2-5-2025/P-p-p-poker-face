@@ -1,7 +1,15 @@
 import pygame
 import sys
 faza_igre = 0
+pritisnuti_gumb = 0
 pozadina = pygame.image.load('download.png')
+gumb_1 = pygame.image.load('download.png')
+gumb_2 = pygame.image.load('download.png')
+# postavljam dek s brojevima karata
+dek = [i for i in range(52)]
+novac = [1000, 1000, 1000, 1000]
+nagrada = 0
+za_uloziti = 0
 # initializing the constructor
 pygame.init()
 
@@ -73,6 +81,14 @@ while True:
     # superimposing the text onto our button
     if faza_igre == 0:
         screen.blit(text , (width/2+50,height/2))
-    
+    # dodajem gumbe na ekran 
+    if faza_igre == 1 or faza_igre == 2 or faza_igre == 3 or faza_igre == 4:
+        gumb_1 = pygame.transform.scale(gumb_1, (100, 100))
+        screen.blit(gumb_1, (650, 900))
+        gumb_2 = pygame.transform.scale(gumb_2, (100, 100))
+        screen.blit(gumb_2, (1150, 900))
+    if ev.type == pygame.MOUSEBUTTONDOWN and (faza_igre == 1 or faza_igre == 2 or faza_igre == 3 or faza_igre == 4):
+        if 650 <= mouse[0] <= 750 and 900 <= mouse[1] <= 1000:
+            pygame.quit()
     # updates the frames of the game
     pygame.display.update()
