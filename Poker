@@ -99,6 +99,13 @@ while True:
     if faza_igre == 0:
         screen.blit(text , (width/2+25,height/2+5))
     # dodajem gumbe na ekran
+
+
+
+
+
+    
+    #prvi dio gdje svatko dobiva 2 karte
     if faza_igre == 1 and triger==0:
         dek_izvadjeno = [1 for i in range (52)]
         fold = [0,0,0,0]
@@ -132,6 +139,7 @@ while True:
             else:
                 pass
         triger=1
+    #dio gdje se izvlače 3 karte na sredinu
     if faza_igre == 2 and triger == 1:
         triger=0
         i=0
@@ -157,6 +165,7 @@ while True:
                 i+=1
             else:
                 pass
+    # izvlačenje četvrte karte na sred.
     if faza_igre == 3 and triger == 0:
         triger = 1
         a = random.randrange(0,51)
@@ -164,6 +173,7 @@ while True:
         ruka1[5]=a
         ruka2[5]=a
         ruka3[5]=a
+    #izvlačenje zadnje karte na sred.
     if faza_igre == 4 and triger == 1:
         triger = 0
         a = random.randrange(0,51)
@@ -171,6 +181,50 @@ while True:
         ruka1[6]=a
         ruka2[6]=a
         ruka3[6]=a
+
+#odreda snage karata ):
+    if faza_igre == 4 and triger == 0:
+        boje = [0,0,0,0]
+        brojevi = [0 for i in range (13)]
+        losi_brojevi = [13,26,39]
+        snaga0 = 0
+        snaga1 = 0
+        snaga2 = 0
+        snaga3 = 0
+        for i in ruka0:
+            #skala u bojj
+            if i<48:
+                if dek[i+1] in ruka0 and dek[i+1] not in losi_brojevi and dek[i+2] in ruka0 and dek[i+2] not in losi_brojevi and dek[i+3] in ruka0 and dek[i+3] not in losi_brojevi and dek[i+4] in ruka0 and dek[i+4] not in losi_brojevi:
+                    snaga0 = 9
+        #poker
+        for i in ruka0:
+            brojevi[i%13]+=1
+        for i in ruka0:
+            if i//13==0:
+                boje[0]+=1
+            if i//13==1:
+                boje[1]+=1
+            if i//13==2:
+                boje[2]+=1
+            if i//13==3:
+                boje[3]+=1 
+        if 4 in brojevi:
+            snaga0 = 8
+        if snaga0 == 0 and (5 in boje or 6 in boje or 7 in boje):
+            snaga0 = 7
+        
+        
+
+
+
+
+
+
+
+
+
+        
+    #učitavaju se gumbi.
     if faza_igre==1 or faza_igre==2 or faza_igre==3 or faza_igre==4:
         gumb_1 = pygame.transform.scale(gumb_1, (200, 100))
         screen.blit(gumb_1, (650, 900))
