@@ -186,17 +186,17 @@ while True:
     if faza_igre == 4 and triger == 0:
         boje = [0,0,0,0]
         brojevi = [0 for i in range (13)]
-        losi_brojevi = [13,26,39]
+        losi_brojevi = [13,26,39,52]
         snaga0 = 0
         snaga1 = 0
         snaga2 = 0
         snaga3 = 0
         for i in ruka0:
             #skala u bojj
-            if i<48:
-                if dek[i+1] in ruka0 and dek[i+1] not in losi_brojevi and dek[i+2] in ruka0 and dek[i+2] not in losi_brojevi and dek[i+3] in ruka0 and dek[i+3] not in losi_brojevi and dek[i+4] in ruka0 and dek[i+4] not in losi_brojevi:
+            if i<49:
+                if i+1 in ruka0 and i+1 not in losi_brojevi and i+2 in ruka0 and i+2 not in losi_brojevi and i+3 in ruka0 and i+3 not in losi_brojevi and i+4 in ruka0 and (i+4 not in losi_brojevi or (i+4 in losi_brojevi and i-9 in ruka0)):
                     snaga0 = 9
-        #poker
+#poker
         for i in ruka0:
             brojevi[i%13]+=1
         for i in ruka0:
@@ -210,9 +210,169 @@ while True:
                 boje[3]+=1 
         if 4 in brojevi:
             snaga0 = 8
-        if snaga0 == 0 and (5 in boje or 6 in boje or 7 in boje):
-            snaga0 = 7
-        
+#fullhouse
+        elif snaga0 == 0 and (brojevi.count(3) == 2 or (2 in brojevi and 3 in brojevi)):
+            snaga0 == 7
+#boja
+        elif snaga0 == 0 and (5 in boje or 6 in boje or 7 in boje):
+            snaga0 = 6
+#skala
+        elif snaga0 == 0:
+            for i in ruka0:
+                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and (brojevi[i%13+4] != 0 or (i%13 == 9 and brojevi[0] != 1)):
+                    snaga0 = 5
+#tris
+        elif snaga0 == 0 and 3 in brojevi:
+            snaga0 = 4
+#2 para
+        elif snaga0 == 0 and brojevi.count(2)>=2:
+            snaga0 = 3
+#par
+        elif snaga0 == 0 and 2 in brojevi:
+            snaga0 = 2
+#jaoooo
+        elif snaga0 == 0:
+            snaga0 = 1
+
+        boje = [0,0,0,0]
+        brojevi = [0 for i in range (13)]
+        losi_brojevi = [13,26,39,52]
+        snaga1 = 0
+        for i in ruka1:
+#skala u bojj
+            if i<49:
+                if i+1 in ruka1 and i+1 not in losi_brojevi and i+2 in ruka1 and i+2 not in losi_brojevi and i+3 in ruka1 and i+3 not in losi_brojevi and i+4 in ruka1 and (i+4 not in losi_brojevi or (i+4 in losi_brojevi and i-9 in ruka1)):
+                    snaga1 = 9
+#poker
+        for i in ruka1:
+            brojevi[i%13]+=1
+        for i in ruka1:
+            if i//13==0:
+                boje[0]+=1
+            if i//13==1:
+                boje[1]+=1
+            if i//13==2:
+                boje[2]+=1
+            if i//13==3:
+                boje[3]+=1 
+        if 4 in brojevi:
+            snaga1 = 8
+#fullhouse
+        elif snaga1 == 0 and (brojevi.count(3) == 2 or (2 in brojevi and 3 in brojevi)):
+            snaga1 == 7
+#boja
+        elif snaga1 == 0 and (5 in boje or 6 in boje or 7 in boje):
+            snaga1 = 6
+#skala
+        elif snaga1 == 0:
+            for i in ruka1:
+                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and (brojevi[i%13+4] != 0 or (i%13 == 9 and brojevi[0] != 1)):
+                    snaga1 = 5
+#tris
+        elif snaga1 == 0 and 3 in brojevi:
+            snaga1 = 4
+#2 para
+        elif snaga1 == 0 and brojevi.count(2)>=2:
+            snaga1 = 3
+#par
+        elif snaga1 == 0 and 2 in brojevi:
+            snaga1 = 2
+#jaoooo
+        elif snaga1 == 0:
+            snaga1 = 1
+                
+        boje = [0,0,0,0]
+        brojevi = [0 for i in range (13)]
+        losi_brojevi = [13,26,39,52]
+        snaga2 = 0
+        for i in ruka2:
+            #skala u bojj
+            if i<49:
+                if i+1 in ruka2 and i+1 not in losi_brojevi and i+2 in ruka2 and i+2 not in losi_brojevi and i+3 in ruka2 and i+3 not in losi_brojevi and i+4 in ruka2 and (i+4 not in losi_brojevi or (i+4 in losi_brojevi and i-9 in ruka2)):
+                    snaga2 = 9
+#poker
+        for i in ruka2:
+            brojevi[i%13]+=1
+        for i in ruka2:
+            if i//13==0:
+                boje[0]+=1
+            if i//13==1:
+                boje[1]+=1
+            if i//13==2:
+                boje[2]+=1
+            if i//13==3:
+                boje[3]+=1 
+        if 4 in brojevi:
+            snaga2 = 8
+#fullhouse
+        elif snaga2 == 0 and (brojevi.count(3) == 2 or (2 in brojevi and 3 in brojevi)):
+            snaga2 == 7
+#boja
+        elif snaga2 == 0 and (5 in boje or 6 in boje or 7 in boje):
+            snaga2 = 6
+#skala
+        elif snaga2 == 0:
+            for i in ruka2:
+                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and (brojevi[i%13+4] != 0 or (i%13 == 9 and brojevi[0] != 1)):
+                    snaga2 = 5
+#tris
+        elif snaga2 == 0 and 3 in brojevi:
+            snaga2 = 4
+#2 para
+        elif snaga2 == 0 and brojevi.count(2)>=2:
+            snaga2 = 3
+#par
+        elif snaga2 == 0 and 2 in brojevi:
+            snaga2 = 2
+#jaoooo
+        elif snaga2 == 0:
+            snaga2 = 1
+        boje = [0,0,0,0]
+        brojevi = [0 for i in range (13)]
+        losi_brojevi = [13,26,39,52]
+        snaga3 = 0
+        for i in ruka3:
+            #skala u bojj
+            if i<49:
+                if i+1 in ruka3 and i+1 not in losi_brojevi and i+2 in ruka3 and i+2 not in losi_brojevi and i+3 in ruka3 and i+3 not in losi_brojevi and i+4 in ruka3 and (i+4 not in losi_brojevi or (i+4 in losi_brojevi and i-9 in ruka3)):
+                    snaga3 = 9
+#poker
+        for i in ruka3:
+            brojevi[i%13]+=1
+        for i in ruka3:
+            if i//13==0:
+                boje[0]+=1
+            if i//13==1:
+                boje[1]+=1
+            if i//13==2:
+                boje[2]+=1
+            if i//13==3:
+                boje[3]+=1 
+        if 4 in brojevi:
+            snaga3 = 8
+#fullhouse
+        elif snaga3 == 0 and (brojevi.count(3) == 2 or (2 in brojevi and 3 in brojevi)):
+            snaga3 == 7
+#boja
+        elif snaga3 == 0 and (5 in boje or 6 in boje or 7 in boje):
+            snaga3 = 6
+#skala
+        elif snaga3 == 0:
+            for i in ruka3:
+                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and (brojevi[i%13+4] != 0 or (i%13 == 9 and brojevi[0] != 1)):
+                    snaga3 = 5
+#tris
+        elif snaga3 == 0 and 3 in brojevi:
+            snaga3 = 4
+#2 para
+        elif snaga3 == 0 and brojevi.count(2)>=2:
+            snaga3 = 3
+#par
+        elif snaga3 == 0 and 2 in brojevi:
+            snaga3 = 2
+#jaoooo
+        elif snaga3 == 0:
+            snaga3 = 1
         
 
 
