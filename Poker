@@ -373,7 +373,12 @@ while True:
 #jaoooo
         elif snaga3 == 0:
             snaga3 = 1
-        
+    if faza_igre == 4:
+        if snaga0 >= snaga1 and snaga0 >= snaga2 and snaga0 >= snaga3:
+            novac[0]+=nagrada
+            nagrada = 0
+        else: 
+            nagrada = 0
 
 
 
@@ -401,15 +406,24 @@ while True:
             last_click_time = current_time
             #tekst = bigfont.render("Zašto ne radi?!", True , zlatno)
             #screen.blit(tekst, (100, 100))
-        elif 900 <= mouse[0] <= 1100 and 900 <= mouse[1] <= 1000:
-            pritisnuti_gumb = 2
-            last_click_time = current_time
+        #elif 900 <= mouse[0] <= 1100 and 900 <= mouse[1] <= 1000:
+        #    pritisnuti_gumb = 2
+        #    last_click_time = current_time
         elif 1150 <= mouse[0] <= 1350 and 900 <= mouse[1] <= 1000:
             pritisnuti_gumb = 3
             last_click_time = current_time
     if ev.type == pygame.MOUSEBUTTONDOWN:
         tekst = bigfont.render(str(ruka0), True , zlatno)
         screen.blit(tekst, (300, 300))
+    if pritisnuti_gumb == 3:
+        if novac[0]<50:
+            nagrada+=(novac[0]*4)
+            novac[0]=0
+        else:
+            novac[0]-=50
+            nagrada+=200
+    if pritisnuti_gumb==1:
+        faza_igre = 1
     if pritisnuti_gumb != 0:
         pritisnuti_gumb = 0
         if faza_igre==1:
