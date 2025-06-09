@@ -414,6 +414,24 @@ while True:
         elif 1150 <= mouse[0] <= 1350 and 900 <= mouse[1] <= 1000:
             pritisnuti_gumb = 3
             last_click_time = current_time
+    if faza_igre == 1 or faza_igre == 2 or faza_igre == 3 or faza_igre == 4: 
+        karta1 = pygame.image.load(dek_img[ruka0[0])
+        screen.blit(karta1, (950, 900))
+        karta2 = pygame.image.load(dek_img[ruka0[1])
+        screen.blit(karta2, (1150, 900))
+    if faza_igre == 2 or faza_igre == 3 or faza_igre == 4:
+        karta3 = pygame.image.load(dek_img[ruka0[2])
+        screen.blit(karta3, (850, 500))
+        karta4 = pygame.image.load(dek_img[ruka0[3])
+        screen.blit(karta4, (950, 500))
+        karta5 = pygame.image.load(dek_img[ruka0[4])
+        screen.blit(karta5, (1050, 500))
+    if faza_igre == 3 or faza_igre == 4:
+        karta6 = pygame.image.load(dek_img[ruka0[5])
+        screen.blit(karta6, (1150, 500))
+    if faza_igre == 4:
+        karta7 = pygame.image.load(dek_img[ruka0[6])
+        screen.blit(karta1, (1250, 500))
     if ev.type == pygame.MOUSEBUTTONDOWN:
         tekst = bigfont.render(str(ruka0), True , zlatno)
         screen.blit(tekst, (300, 300))
