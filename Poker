@@ -198,6 +198,7 @@ while True:
         snaga3 = 0
         
     if faza_igre == 4 and triger == 0:
+        triger = 1
         boje = [0,0,0,0]
         brojevi = [0 for i in range (13)]
         losi_brojevi = [13,26,39,52]
@@ -384,7 +385,8 @@ while True:
             snaga3 = 1
         tekst = bigfont.render(str(snaga0), True , zlatno)
         screen.blit(tekst, (100, 100))
-    if faza_igre == 4:
+    if faza_igre == 4 and triger == 1:
+        triger = 0
         if snaga0 >= snaga1 and snaga0 >= snaga2 and snaga0 >= snaga3:
             novac[0]+=nagrada
             nagrada = 0
