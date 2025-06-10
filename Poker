@@ -1,3 +1,4 @@
+
 import pygame
 import sys
 import random
@@ -14,7 +15,7 @@ gumb_1 = pygame.image.load('35dac805-4b1a-4b5b-8f4d-6f307c63682e.jpg')
 gumb_2 = pygame.image.load('26ed8bb3-a17f-4b9a-b3cf-49f047f8ae45.jpg')
 gumb_3 = pygame.image.load('c2b9c2ee-0041-4e72-91e7-bf2e98f57c98.jpg')
 #redoslijed karata je žir, pik, kara, srce
-dek_img = ['az.jpg','2z.jpg','3z.jpg','4z.jpg','5z.jpg','6z.jpg','7z.jpg','8z.jpg','9z.jpg,'10z.jpg','jz.jpg','qz.jpg','kz.jpg', 'ap.jpg','2p.jpg','3p.jpg','4p.jpg','5p.jpg','6p.jpg','7p.jpg','8p.jpg','9p.jpg,'10p.jpg','jp.jpg','qp.jpg','kp.jpg', 'ak.jpg','2k.jpg','3k.jpg','4k.jpg','5k.jpg','6k.jpg','7k.jpg','8k.jpg','9k.jpg,'10k.jpg','jk.jpg','qk.jpg','kk.jpg',  'as.jpg','2s.jpg','3s.jpg','4s.jpg','5s.jpg','6s.jpg','7s.jpg','8s.jpg','9s.jpg,'10s.jpg','js.jpg','qs.jpg','ks.jpg']
+dek_img = ['az.jpg','2z.jpg','3z.jpg','4z.jpg','5z.jpg','6z.jpg','7z.jpg','8z.jpg','9z.jpg','10z.jpg','jz.jpg','qz.jpg','kz.jpg', 'ap.jpg','2p.jpg','3p.jpg','4p.jpg','5p.jpg','6p.jpg','7p.jpg','8p.jpg','9p.jpg','10p.jpg','jp.jpg','qp.jpg','kp.jpg', 'ak.jpg','2k.jpg','3k.jpg','4k.jpg','5k.jpg','6k.jpg','7k.jpg','8k.jpg','9k.jpg','10k.jpg','jk.jpg','qk.jpg','kk.jpg',  'as.jpg','2s.jpg','3s.jpg','4s.jpg','5s.jpg','6s.jpg','7s.jpg','8s.jpg','9s.jpg','10s.jpg','js.jpg','qs.jpg','ks.jpg']
 last_click_time = 0
 # postavljam dek s brojevima karata
 dek = [i for i in range(52)]
@@ -56,7 +57,7 @@ bigfont = pygame.font.SysFont('Times New Roman',70)
 # this font
 text = smallfont.render('PLAY' , True , color)
 ulog = bigfont.render(str(nagrada) + "$" , True , zlatno)
-novac = bigfont.render(str(novac[0]) + "$" , True , zlatno)
+novac2 = bigfont.render(str(novac[0]) + "$" , True , zlatno)
 #prikaz koordinata
 #tekst = bigfont.render(str(mouse), True , zlatno)
 #screen.blit(tekst, (100, 100))
@@ -103,7 +104,7 @@ while True:
     # dodajem gumbe na ekran
 
 
-
+    
 
 
     
@@ -111,6 +112,7 @@ while True:
     if faza_igre == 1 and triger==0:
         dek_izvadjeno = [1 for i in range (52)]
         fold = [0,0,0,0]
+        nagrada = 0
         pritisnuti_gumb = 0
         ruka0 = [-1,-1,-1,-1,-1,-1,-1]
         ruka1 = [-1,-1,-1,-1,-1,-1,-1]
@@ -185,14 +187,16 @@ while True:
         ruka3[6]=a
 
 #odreda snage karata ):
-    if faza_igre == 4 and triger == 0:
-        boje = [0,0,0,0]
-        brojevi = [0 for i in range (13)]
-        losi_brojevi = [13,26,39,52]
+    if faza_igre == 1:
         snaga0 = 0
         snaga1 = 0
         snaga2 = 0
         snaga3 = 0
+        
+    if faza_igre == 4 and triger == 0:
+        boje = [0,0,0,0]
+        brojevi = [0 for i in range (13)]
+        losi_brojevi = [13,26,39,52]
         for i in ruka0:
             #skala u bojj
             if i<49:
@@ -221,7 +225,7 @@ while True:
 #skala
         elif snaga0 == 0:
             for i in ruka0:
-                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and (brojevi[i%13+4] != 0 or (i%13 == 9 and brojevi[0] != 1)):
+                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and ((brojevi[i%13+4] != 0 and i<9) or (i%13 == 9 and brojevi[0] != 0)):
                     snaga0 = 5
 #tris
         elif snaga0 == 0 and 3 in brojevi:
@@ -235,7 +239,6 @@ while True:
 #jaoooo
         elif snaga0 == 0:
             snaga0 = 1
-
         boje = [0,0,0,0]
         brojevi = [0 for i in range (13)]
         losi_brojevi = [13,26,39,52]
@@ -268,7 +271,7 @@ while True:
 #skala
         elif snaga1 == 0:
             for i in ruka1:
-                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and (brojevi[i%13+4] != 0 or (i%13 == 9 and brojevi[0] != 1)):
+                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and ((brojevi[i%13+4] != 0 and i<9) or (i%13 == 9 and brojevi[0] != 0)):
                     snaga1 = 5
 #tris
         elif snaga1 == 0 and 3 in brojevi:
@@ -315,7 +318,7 @@ while True:
 #skala
         elif snaga2 == 0:
             for i in ruka2:
-                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and (brojevi[i%13+4] != 0 or (i%13 == 9 and brojevi[0] != 1)):
+                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and ((brojevi[i%13+4] != 0 and i<9) or (i%13 == 9 and brojevi[0] != 0)):
                     snaga2 = 5
 #tris
         elif snaga2 == 0 and 3 in brojevi:
@@ -361,7 +364,7 @@ while True:
 #skala
         elif snaga3 == 0:
             for i in ruka3:
-                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and (brojevi[i%13+4] != 0 or (i%13 == 9 and brojevi[0] != 1)):
+                if i%13<10 and brojevi[i%13] != 0 and brojevi[i%13+1] != 0 and brojevi[i%13+2] != 0 and  brojevi[i%13+3] != 0 and ((brojevi[i%13+4] != 0 and i<9) or (i%13 == 9 and brojevi[0] != 0)):
                     snaga3 = 5
 #tris
         elif snaga3 == 0 and 3 in brojevi:
@@ -375,16 +378,19 @@ while True:
 #jaoooo
         elif snaga3 == 0:
             snaga3 = 1
+        tekst = bigfont.render(str(snaga0), True , zlatno)
+        screen.blit(tekst, (100, 100))
     if faza_igre == 4:
         if snaga0 >= snaga1 and snaga0 >= snaga2 and snaga0 >= snaga3:
             novac[0]+=nagrada
             nagrada = 0
         else: 
             nagrada = 0
+    
 
 
-
-
+    #tekst = bigfont.render(str(snaga0), True , zlatno)
+    #screen.blit(snaga0, (100, 100))
 
 
 
@@ -392,15 +398,17 @@ while True:
 
         
     #učitavaju se gumbi.
+    ulog = bigfont.render(str(nagrada) + "$" , True , zlatno)
+    novac2 = bigfont.render(str(novac[0]) + "$" , True , zlatno)
     if faza_igre==1 or faza_igre==2 or faza_igre==3 or faza_igre==4:
         gumb_1 = pygame.transform.scale(gumb_1, (200, 100))
         screen.blit(gumb_1, (650, 900))
-        gumb_2 = pygame.transform.scale(gumb_2, (200, 100))
-        screen.blit(gumb_2, (900, 900))
+        #gumb_2 = pygame.transform.scale(gumb_2, (200, 100))
+        #screen.blit(gumb_2, (900, 900))
         gumb_3 = pygame.transform.scale(gumb_3, (200, 100))
         screen.blit(gumb_3, (1150, 900))
         screen.blit(ulog, (950, 300))
-        screen.blit(novac, (900, 625))
+        screen.blit(novac2, (900, 625))
     #provjerava se koji se gumb stisnuo
     if ev.type == pygame.MOUSEBUTTONDOWN and pritisnuti_gumb == 0 and current_time - last_click_time>=3000:
         if 650 <= mouse[0] <= 850 and 900 <= mouse[1] <= 1000:
@@ -415,22 +423,22 @@ while True:
             pritisnuti_gumb = 3
             last_click_time = current_time
     if faza_igre == 1 or faza_igre == 2 or faza_igre == 3 or faza_igre == 4: 
-        karta1 = pygame.image.load(dek_img[ruka0[0])
-        screen.blit(karta1, (950, 900))
-        karta2 = pygame.image.load(dek_img[ruka0[1])
-        screen.blit(karta2, (1150, 900))
+        karta1 = pygame.image.load(dek_img[ruka0[0]])
+        screen.blit(karta1, (900, 900))
+        karta2 = pygame.image.load(dek_img[ruka0[1]])
+        screen.blit(karta2, (1000, 900))
     if faza_igre == 2 or faza_igre == 3 or faza_igre == 4:
-        karta3 = pygame.image.load(dek_img[ruka0[2])
+        karta3 = pygame.image.load(dek_img[ruka0[2]])
         screen.blit(karta3, (850, 500))
-        karta4 = pygame.image.load(dek_img[ruka0[3])
+        karta4 = pygame.image.load(dek_img[ruka0[3]])
         screen.blit(karta4, (950, 500))
-        karta5 = pygame.image.load(dek_img[ruka0[4])
+        karta5 = pygame.image.load(dek_img[ruka0[4]])
         screen.blit(karta5, (1050, 500))
     if faza_igre == 3 or faza_igre == 4:
-        karta6 = pygame.image.load(dek_img[ruka0[5])
+        karta6 = pygame.image.load(dek_img[ruka0[5]])
         screen.blit(karta6, (1150, 500))
     if faza_igre == 4:
-        karta7 = pygame.image.load(dek_img[ruka0[6])
+        karta7 = pygame.image.load(dek_img[ruka0[6]])
         screen.blit(karta1, (1250, 500))
     if ev.type == pygame.MOUSEBUTTONDOWN:
         tekst = bigfont.render(str(ruka0), True , zlatno)
@@ -444,6 +452,7 @@ while True:
             nagrada+=200
     if pritisnuti_gumb==1:
         faza_igre = 1
+        pritisnuti_gumb=0
     if pritisnuti_gumb != 0:
         pritisnuti_gumb = 0
         if faza_igre==1:
