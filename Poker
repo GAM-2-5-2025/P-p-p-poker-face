@@ -173,6 +173,8 @@ while True:
     if faza_igre == 3 and triger == 0:
         triger = 1
         a = random.randrange(0,51)
+        while dek_izvadjeno[a]==0:
+            a = random.randrange(0,51)
         ruka0[5]=a
         ruka1[5]=a
         ruka2[5]=a
@@ -181,6 +183,8 @@ while True:
     if faza_igre == 4 and triger == 1:
         triger = 0
         a = random.randrange(0,51)
+        while dek_izvadjeno[a]==0:
+            a = random.randrange(0,51)
         ruka0[6]=a
         ruka1[6]=a
         ruka2[6]=a
